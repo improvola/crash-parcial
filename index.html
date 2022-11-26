@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Parcial</title>
+</head>
+<body>
+    <img src="img/banner.png" alt="banner">
+   
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding: 1rem;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="img/logo-w.png" alt="lady-logo" style="max-width: 80px;"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarColor02">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">Home
+                  <span class="visually-hidden">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Nosotros</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Productos</a>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item" href="#">Computación</a>
+                  <a class="dropdown-item" href="#">Celulares</a>
+                  <a class="dropdown-item" href="#">Accesorios</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">All Store</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contacto</a>
+              </li>
+            </ul>
+    
+            <div class="accordion" id="accordionExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  <img src="img/shopping-cart.png" alt="cart1" style="max-width:45px; margin-right: auto;">
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                  <div class="accordion-body" id="appWeb">
+                    <ul>
+                      <li v-for="g of mostrarProducto">
+                        <p v-text="g.nombre"></p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            &nbsp;
+          </div>
+        </div>
+      </nav>
+      <br><a class="whatsapp" href="https://wa.me/1156192207/?text=Hola%20quiero%20comprar%20un%20producto!" target="_blank"><img src="https://icones.pro/wp-content/uploads/2021/02/icone-du-logo-whatsapp-rose.png" alt="" style="max-width: 70px;"></a>
+      <!-- FIN NAVBAR -->
+
+      <h1>Bienvenido a nuestra tienda!</h1>
+      <br>
+      <img src="https://img.freepik.com/vector-gratis/video-juegos-neon-controlador-texto_1262-16218.jpg?w=2000" alt="banner-videos" class="img-fluid"><br>
+      <!-- FIN SEPARADOR-->
+      <br>
+      <div align="center"><h2>CONOCE NUESTROS PRODUCTOS</h2></div>
+
+       <!-- ESTO ES EL SELECION -->
+      <div class="accordion" id="accordionExample">
+        <select class="form-select accordion-button collapsed" aria-label="Default select example">
+          <option selected>&#8595; ORDENAR PRODUCTOS</option>
+          <option value="1" v-model="name">Mayor precio</option>
+          <option value="2" v-model="name">Menor precio</option>
+          <option value="3" v-model="name">Alfabeticamente</option>
+        </select>
+      </div>
+   <!-- AGREGAR PRODUCTOS -->
+   <main id="app">
+    <div class="row">
+      <div class="col">
+          <form class="form" v-on:submit.prevent="agregar">
+            <h3>Puedes agregar un articulo a la venta</h3>
+            <br>
+      
+            <input class="input-container" type="number" id="search" placeholder="ingrese el id" v-model="legajoP">
+            <input class="input-container" type="text" id="search" placeholder="ingrese el nombre" v-model="nomP">
+            <input class="input-container" type="number" id="search" placeholder="ingrese un numero" v-model="precioP">
+            <button class="btn btn-secondary md-2 my-sm-3" type="submit">Agregar</button>
+          </form>
+       </div>
+    <!-- ESTO ES EL BUSCADOR -->
+    <div class="col">
+        <form class="formbusc">
+          <h4>Puedes buscar nuestros productos</h4>
+          <input class="input-container" type="search" name="buscarProducto" id="search" v-model="nombreProducto" placeholder="buscar..." >
+          <button class="btn btn-secondary md-4 my-sm-3" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+    <br>
+  
+    <div></div>
+    <p></p>
+        <!--buscador-->
+        <div v-for="produ of buscarProducto"  class="card">
+            
+            <!--V-TEXT NOMBRE PELICULA-->
+            <h4 v-text="produ.nombre"></h4>
+            <!--V-BIND IMAGEN PELICULA-->
+            <img v-bind:src="produ.fotoUrl" alt="">
+            <!--V-TEXT ANIO PELICULA-->
+            $<p v-text='produ.precio'></p>
+            <div class="row-md-2">
+              <!-- LIKE DE PRODUCTO -->
+              <i v-on:click="darLike(produ)" v-bind:class="{'like': produ.like==true}" class="fa-solid fa-lg fa-heart "></i>
+          </div>
+        </div>
+<!-- PARA VER EL CARRITO -->
+<div class="carritototal">
+<div class="container px-4 text-center">
+  <div class="historial">
+  <div class="row gx-5">
+    <div class="col">
+     <div class="p-3 border bg-secondary"><h3>Carrito de compras</h3></div>
+    </div>
+    <div class="col">
+     <ul>
+    <li v-for="g of mostrarProducto">
+      <p v-text="g.nombre"></p>
+    </li>
+  </ul>
+  <p v-text="productosTotales"></p>
+    </div>
+  </div>
+</div>
+</div>
+</main>
+      <br>
+      <!--INICIO FOOTER-->
+      <footer>
+        <div class="footer-content">
+            <h3>Crash Games</h3>
+
+            <p>Seguinos en nuestras redes</p>
+            <p>Ponete en contacto</p>
+            <!--add all information -->
+
+            <ul class="socials">
+              <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/747/747562.png" alt="instagram" style="max-width:45px;"></a></li>
+              <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1400/1400477.png" alt="facebook" style="max-width:45px;"></a></li>
+              <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384174.png" alt="twitter" style="max-width:45px;"></a></li>
+              <li><a href="#"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384171.png" alt="linkedin" style="max-width:45px;"></a></li>
+              <li><a href="https://wa.me/1156192207/?text=Hola%20quiero%20comprar%20un%20producto!" target="_blank"><img src="https://cdn-icons-png.flaticon.com/512/1384/1384079.png" alt="whatsapp" style="max-width:50px;"></a></li>
+           </ul>
+
+              <p>Copyright &copy;2022 <a href="#">Improvola</a>, <a href="#">Umanzor</a>, <a href="#">Flores</a>    </p>
+        </div>
+       
+      </footer>
+    <script src="producto.js"></script>
+    <!-- <script src="js/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="app.js"></script>
+    <script src="appWeb.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.min.js" integrity="sha384-IDwe1+LCz02ROU9k972gdyvl+AESN10+x7tBKgc9I5HFtuNz0wWnPclzo6p9vxnk" crossorigin="anonymous"></script>
+</body>
+</html>
