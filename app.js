@@ -67,14 +67,6 @@ const app = new Vue({
                 console.log("Error");
             }
         },
-        // CARGAR UN NUEVO PRODUCTO
-        // addCard: function(index){
-  
-        //     this.carrito.push({
-        //         id: this.cursos[index].id,
-        //         nombre: this.cursos[index].nombre
-        //     })
-        // }
 
         eliminar: function(index){
             console.log(index);
